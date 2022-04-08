@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.igorsantos.monnoslistcryptocurrency.data.model.presentation.CryptoInfo" />
+        <variable
+            name="mViewModel"
+            type="com.igorsantos.monnoslistcryptocurrency.view.presentation.PresentationViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_large"
+        android:onClick="@{() -> mViewModel.onDetails(data.symbol.counterCurrency)}">
+
+        <ImageView
+            android:id="@+id/ic_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:src="@drawable/ic_star"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+        
+        <ImageView
+            android:id="@+id/ic_crypto"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="@dimen/margin_large"
+            android:src="@drawable/ic_bitcoin"
+            app:layout_constraintTop_toTopOf="@id/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/ic_star"
+            app:layout_constraintStart_toEndOf="@id/ic_star" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/crypto_initials"
+            style="@style/TextAppearance.Monnos.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@{data.symbol.counterCurrency}"
+            app:layout_constraintTop_toTopOf="@id/ic_crypto"
+            app:layout_constraintBottom_toTopOf="@id/crypto_name"
+            app:layout_constraintStart_toEndOf="@id/ic_crypto"
+            app:layout_constraintEnd_toStartOf="@id/base_currency"
+            tools:text="MNS"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/crypto_name"
+            style="@style/TextAppearance.Monnos.Subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:text="@string/monnos_token"
+            app:layout_constraintBottom_toBottomOf="@id/ic_crypto"
+            app:layout_constraintStart_toEndOf="@id/ic_crypto"
+            app:layout_constraintEnd_toStartOf="@id/base_currency" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/base_currency"
+            style="@style/TextAppearance.Monnos.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_x_small"
+            android:text="@{data.symbol.baseCurrency}"
+            android:textSize="14sp"
+            app:layout_constraintTop_toTopOf="@id/crypto_value"
+            app:layout_constraintBottom_toBottomOf="@id/crypto_value"
+            app:layout_constraintEnd_toStartOf="@id/crypto_value"
+            tools:text="BRL"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/crypto_value"
+            style="@style/TextAppearance.Monnos.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_small"
+            app:formatCurrency="@{data.price}"
+            app:layout_constraintTop_toTopOf="@id/ic_crypto"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="0.0104"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.Monnos.Subtitle"
+            android:id="@+id/variation_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_small"
+            app:formatPercentDay="@{data.lastPriceDay}"
+            app:formatPercentWeek="@{data.lastPriceWeek}"
+            app:formatPercentMonth="@{data.lastPriceMonth}"
+            app:layout_constraintTop_toBottomOf="@id/crypto_value"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="0.00%"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

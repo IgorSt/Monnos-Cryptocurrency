@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Monnos List Cryptocurrency</string>
+
+    <string name="title_presentation">Monnos</string>
+    <string name="monnos_token">Monnos Token</string>
+    <string name="sorry_error_occurred">Lamento, ocorreu um erro inesperado: %1$s</string>
+    <string name="ok">OK</string>
+</resources>
